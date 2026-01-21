@@ -1,1 +1,39 @@
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class FileNumberProcessor {
+
+    public static void main(String[] args) {
+        try {
+            
+            Scanner sc = new Scanner(new File("input.txt"));
+            sc.useDelimiter(",");
+
+            int max = Integer.MIN_VALUE;
+
+            while (sc.hasNextInt()) {
+                int num = sc.nextInt();
+                if (num > max) {
+                    max = num;
+                }
+            }
+            sc.close();
+
+            
+            int sum = (max * (max + 1)) / 2;
+
+            
+            PrintWriter pw = new PrintWriter("output.txt");
+            pw.println("Highest Number: " + max);
+            pw.println("Sum of Natural Numbers up to " + max + ": " + sum);
+            pw.close();
+
+            System.out.println("Data processed successfully!");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
